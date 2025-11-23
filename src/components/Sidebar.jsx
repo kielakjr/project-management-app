@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { FaBars } from 'react-icons/fa'
 
-const Sidebar = () => {
+const Sidebar = ( { setShowProjectAdder }) => {
 
   const [isOpen, setIsOpen] = useState(true)
 
@@ -12,7 +12,7 @@ const Sidebar = () => {
       {isOpen &&
         <>
           <h1 className="text-white text-lg md:text-2xl font-bold p-4">Your Projects</h1>
-          <button className="w-auto bg-stone-600 p-1 rounded-xl mx-2 text-sm text-zinc-400 cursor-pointer">+Add Project</button>
+          <button className="w-auto bg-stone-600 p-1 rounded-xl mx-2 text-sm text-zinc-400 cursor-pointer" onClick={ () => {setShowProjectAdder(true)}}>+Add Project</button>
         </>
       }
     </div>
