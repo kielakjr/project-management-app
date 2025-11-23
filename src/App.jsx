@@ -1,10 +1,12 @@
 import React from 'react'
 import Sidebar from './components/Sidebar'
+import ProjectAdder from './components/ProjectAdder'
 
 const App = () => {
   return (
-    <div>
+    <div className="flex flex-row" >
       <Sidebar />
+      <ProjectAdder />
     </div>
   )
 }

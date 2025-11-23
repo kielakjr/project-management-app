@@ -2,4 +2,6 @@
 
 body {
   @apply bg-stone-300;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
