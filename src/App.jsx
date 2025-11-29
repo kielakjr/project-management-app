@@ -6,12 +6,33 @@ import { useState } from 'react'
 
 const App = () => {
 
-  const [showProjectAdder, setShowProjectAdder] = useState(false);
+  const setDefaultProject = () => {
+    setProject(projects.default);
+  }
+
+  const setAdder = () => {
+    setProject(projects.adder);
+  }
+
+  const addProject = (project) => {
+    setProjects(prev => ({
+      ...prev,
+      [project.id]: project.component
+    }));
+    setProject(project.component);
+  }
+
+  const [projects, setProjects] = useState({
+    default: <Default setAdder={setAdder} />,
+    adder: <ProjectAdder setDefaultProject={setDefaultProject} addProject={addProject} />
+  });
+
+  const [project, setProject] = useState(projects.default);
 
   return (
     <div className="flex flex-row" >
-      <Sidebar setShowProjectAdder={setShowProjectAdder} />
-      {showProjectAdder ? <ProjectAdder setShowProjectAdder={setShowProjectAdder} /> : <Default setShowProjectAdder={setShowProjectAdder} />}
+      <Sidebar setAdder={setAdder} projects={projects} setProject={setProject} />
+      {project}
     </div>
   )
 }

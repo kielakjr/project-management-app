@@ -1,20 +1,40 @@
 import React from 'react'
+import { useRef } from 'react'
 
-const inputStyles = "bg-stone-400 border-b-2 rounded w-full max-w-4xl p-2 focus:outline-none focus:ring-2 focus:ring-stone-600 md:mx-auto mb-6";
+const inputStyles = "bg-stone-400 border-b-2 rounded w-4/5 max-w-4xl p-2 focus:outline-none focus:ring-2 focus:ring-stone-600 md:mx-auto mb-6";
 
-const ProjectAdder = ({ setShowProjectAdder }) => {
+const ProjectAdder = ({ setDefaultProject, addProject }) => {
+
+  const title = useRef();
+  const description = useRef();
+  const dueDate = useRef();
+
+  const handleSave = () => {
+    const newProject = {
+      id: title.current.value,
+      component: (
+        <div>
+          <h1>{title.current.value}</h1>
+          <p>{description.current.value}</p>
+          <p>{dueDate.current.value}</p>
+        </div>
+      )
+    };
+    addProject(newProject);
+  }
+
   return (
-    <div className='w-full left-1/5 text-lg text-stone-600 flex flex-col p-4 md:p-12 items-center h-screen overflow-y-auto mx-auto'>
+    <div className='w-full text-lg text-stone-600 flex flex-col items-center h-screen overflow-y-auto'>
       <div className="flex flex-row justify-end gap-4 mb-8 w-full max-w-4xl">
-        <button className="cursor-pointer" onClick={() => setShowProjectAdder(false)}>Cancel</button>
-        <button className='bg-stone-900 p-2 px-4 rounded-md text-stone-300 cursor-pointer'>Save</button>
+        <button className="cursor-pointer" onClick={setDefaultProject}>Cancel</button>
+        <button className='bg-stone-900 p-2 px-4 rounded-md text-stone-300 cursor-pointer' onClick={handleSave}>Save</button>
       </div>
       <h1>TITLE</h1>
-      <input className={inputStyles}  type="text" />
+      <input ref={title} className={inputStyles}  type="text" />
       <h1>DESCRIPTION</h1>
-      <textarea className={inputStyles + " h-40"}  type="text" />
+      <textarea ref={description} className={inputStyles + " h-40"}  type="text" />
       <h1>DUE DATE</h1>
-      <input className={inputStyles}  type="date" />
+      <input ref={dueDate} className={inputStyles}  type="date" />
     </div>
   )
 }
