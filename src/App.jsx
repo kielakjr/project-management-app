@@ -22,9 +22,18 @@ const App = () => {
     setProject(project.component);
   }
 
+  const removeProject = (projectId) => {
+    setProjects(prev => {
+      const updated = { ...prev };
+      delete updated[projectId];
+      return updated;
+    });
+    setProject(projects.default);
+  }
+
   const [projects, setProjects] = useState({
     default: <Default setAdder={setAdder} />,
-    adder: <ProjectAdder setDefaultProject={setDefaultProject} addProject={addProject} />
+    adder: <ProjectAdder setDefaultProject={setDefaultProject} addProject={addProject} removeProject={removeProject} />
   });
 
   const [project, setProject] = useState(projects.default);

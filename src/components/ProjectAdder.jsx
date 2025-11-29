@@ -1,9 +1,10 @@
 import React from 'react'
 import { useRef } from 'react'
+import Project from './Project.jsx'
 
 const inputStyles = "bg-stone-400 border-b-2 rounded w-4/5 max-w-4xl p-2 focus:outline-none focus:ring-2 focus:ring-stone-600 md:mx-auto mb-6";
 
-const ProjectAdder = ({ setDefaultProject, addProject }) => {
+const ProjectAdder = ({ setDefaultProject, addProject, removeProject }) => {
 
   const title = useRef();
   const description = useRef();
@@ -13,11 +14,12 @@ const ProjectAdder = ({ setDefaultProject, addProject }) => {
     const newProject = {
       id: title.current.value,
       component: (
-        <div>
-          <h1>{title.current.value}</h1>
-          <p>{description.current.value}</p>
-          <p>{dueDate.current.value}</p>
-        </div>
+        <Project
+          title={title.current.value}
+          description={description.current.value}
+          dueDate={dueDate.current.value}
+          removeProject={removeProject}
+        />
       )
     };
     addProject(newProject);
