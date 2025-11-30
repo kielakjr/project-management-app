@@ -30,6 +30,7 @@ const ProjectAdder = ({ setDefaultProject, addProject, removeProject }) => {
           description={description.current.value}
           dueDate={dueDate.current.value}
           removeProject={removeProject}
+          key={title.current.value}
         />
       )
     };
