@@ -11,6 +11,17 @@ const ProjectAdder = ({ setDefaultProject, addProject, removeProject }) => {
   const dueDate = useRef();
 
   const handleSave = () => {
+
+    if (!title.current.value) {
+      alert("Title is required");
+      return;
+    }
+
+    if (!dueDate.current.value) {
+      alert("Due Date is required");
+      return;
+    }
+
     const newProject = {
       id: title.current.value,
       component: (
@@ -27,7 +38,7 @@ const ProjectAdder = ({ setDefaultProject, addProject, removeProject }) => {
 
   return (
     <div className='w-full text-lg text-stone-600 flex flex-col items-center h-screen overflow-y-auto'>
-      <div className="flex flex-row justify-end gap-4 mb-8 w-full max-w-4xl">
+      <div className="flex flex-row justify-end gap-4 mb-8 w-full max-w-4xl mt-2 mr-2">
         <button className="cursor-pointer" onClick={setDefaultProject}>Cancel</button>
         <button className='bg-stone-900 p-2 px-4 rounded-md text-stone-300 cursor-pointer' onClick={handleSave}>Save</button>
       </div>

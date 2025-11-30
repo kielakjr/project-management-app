@@ -17,7 +17,7 @@ const Sidebar = ( { setAdder, projects, setProject }) => {
             {Object.keys(projects).filter(key => key !== 'default' && key !== 'adder').map(key => (
               <button
                 key={key}
-                className="text-stone-300 text-left cursor-pointer "
+                className="text-stone-300 text-left cursor-pointer px-2 overflow-auto focus:bg-stone-700 rounded-md"
                 onClick={() => setProject(projects[key])}
               >
                 {key}
